@@ -1,0 +1,42 @@
+{:aliases                    {:test   {:extra-paths ["test"],
+                                       :extra-deps  {org.clojure/test.check {:mvn/version "RELEASE"}}},
+                              :runner {:extra-deps {com.cognitect/test-runner {:git/url "https://github.com/cognitect-labs/test-runner",
+                                                                               :sha     "76568540e7f40268ad2b646110f237a60295fa3c"}},
+                                       :main-opts  ["-m" "cognitect.test-runner" "-d" "test"]},
+                              :dev    {:jvm-opts    ["-Dconf=dev-config.edn"],
+                                       :extra-deps  {
+                                                     thheller/shadow-cljs       {:mvn/version "2.10.13"}},
+                                       :extra-paths ["src"
+                                                     "test/cljs"
+                                                     "env/dev/src_front"
+                                                     "env/dev/src_main"
+                                                     "env/dev/resources"]}
+                              :outdated {:extra-deps {olical/depot {:mvn/version "2.0.1"}}
+                                          :main-opts ["-m" "depot.outdated.main"]}},
+ :deps                       {org.clojure/clojure                 {:mvn/version "1.10.1"},
+                              
+                              fnumatic/simple-workers             {:git/url "https://github.com/fnumatic/simple-workers.git"
+                                                                   :sha     "ccbb64641902e2d46fcb262a0d1d4ba85be12a70"}
+                              kitchen-async                       {:mvn/version "0.1.0-SNAPSHOT"
+                                                                   :exclusions  [org.clojure/core.async]}
+                              com.cognitect/transit-cljs          {:mvn/version "0.8.264"},
+                              re-pressed                          {:mvn/version "0.3.1"},
+                              cljs-ajax                           {:mvn/version "0.8.0",
+                                                                   :exclusions  [com.fasterxml.jackson.core/jackson-core]},
+                              metosin/reitit-schema               {:mvn/version "0.5.2"},
+                              com.andrewmcveigh/cljs-time         {:mvn/version "0.5.2"},
+                              binaryage/oops                      {:mvn/version "0.7.0"},
+                              metosin/reitit-frontend             {:mvn/version "0.5.2"},
+                              metosin/reitit                      {:mvn/version "0.5.2"},
+                              re-frame                            {:mvn/version "0.12.0"}},
+ :paths     ["src"
+             "resources"
+             "src"
+             "src_front"
+             "src_main"
+             "env/dev/src_front"
+             "env/dev/src_main"
+             "env/dev/src"
+             ;;"app"
+             ]
+ }

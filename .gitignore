@@ -1,0 +1,12 @@
+.DS_Store
+/target
+/classes
+/checkouts
+/.nrepl-port
+/node_modules
+/releases
+/*.log
+/.cpcache
+/.shadow-cljs
+/app/js
+package-lock.json
