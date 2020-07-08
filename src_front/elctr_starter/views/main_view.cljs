@@ -36,12 +36,10 @@
      (merge {:class btnclass} opts)]))  
 
 (defn menu-area []
-  (let [        f (fn [msg] #(rf/dispatch msg))]
-   
-   [:nav.flex.items-center.flex-wrap.bg-green-500.pl-4.p-2.space-x-4.navbar
-    [nav-btn [ic/svg ic/rocket]   (f [:ui/change-viewL  :view/first   ]) {:title "first"}]
-    [nav-btn [ic/svg ic/export] (f  [:ui/change-viewL  :view/second   ]) { :title "second" }]
-    ]))
+  (let [f rf/dispatch]
+    [:nav.flex.items-center.flex-wrap.bg-green-500.pl-4.p-2.space-x-4
+     [nav-btn [ic/svg ic/rocket] #(f [:ui/change-viewL  :view/first]) {:title "first"}]
+     [nav-btn [ic/svg ic/export] #(f  [:ui/change-viewL  :view/second]) {:title "second"}]]))
 
 (defn show-msg [msg]
   (when msg
