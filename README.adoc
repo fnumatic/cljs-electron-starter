@@ -1,0 +1,46 @@
+= cljs-electron-starter
+
+A starter https://www.electronjs.org/[electron] application with cljs
+
+dev tooling with shadow-cljs
+
+styles via TailwindCSS https://tailwindcss.com/ 
+
+== Development Mode
+
+* install deps via npm
+
+----
+npm install
+----
+
+----
+npx shadow-cljs watch main renderer
+----
+
+
+=== Release application
+
+* linux release
+** please adapt accordingly for win and mac
+
+----
+npx shadow-cljs release main renderer
+npm run-script pack
+cp dist/[linux-unpacked]/* targetfolder/appfolder
+----
+
+
+=== CSS via Tailwind
+
+* purge CSS
+
+----
+npm run-script tw
+----
+
+=== Run application:
+
+----
+npx electron .
+----
