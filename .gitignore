@@ -10,3 +10,5 @@
 /.shadow-cljs
 /app/js
 package-lock.json
+.clj-kondo
+.calva
