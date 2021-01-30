@@ -1,0 +1,35 @@
+#!/usr/bin/env bb
+
+(ns dev
+  (:require [babashka.process :refer [$ destroy-tree *defaults*]])
+  (:import [java.time.format DateTimeFormatter]
+           [java.time LocalDateTime]))
+
+(def date (LocalDateTime/now))
+(def formatter (DateTimeFormatter/ofPattern "yyyy-MM-dd"))
+;; (.format date formatter)
+
+(alter-var-root #'*defaults* assoc
+                :out :inherit
+                :err :false
+                :shutdown destroy-tree)
+
+(defn buildreport []
+  (let [file (str "buildreport_" (.format date formatter) ".html")]
+   ($  npx shadow-cljs run shadow.cljs.build-report renderer ~file)))
+
+
+(def tree
+  {
+   "prep"     #($ npm install)
+   "watch"    #($ npx shadow-cljs watch main renderer)
+   "compile"  #($ npx shadow-cljs compile main renderer)
+   "release"  #($ npx shadow-cljs release main renderer)
+   "app"      #($ npx electron .)
+   "purgecss" #($ npm run-script tw)
+   "buildreport" buildreport})
+
+;@(app)
+(when-let [[a1] *command-line-args*]
+  (when-let [fn (get tree a1)]
+    (-> @(fn) :exit (System/exit))))
