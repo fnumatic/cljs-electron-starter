@@ -44,3 +44,23 @@ npm run-script tw
 ----
 npx electron .
 ----
+
+== Using babashka
+
+https://github.com/babashka/babashka[babashka]
+
+----
+./run prep
+./run watch
+./run compile
+./run release
+./run purgecss
+./run buildreport
+./run app
+----
+
+== Appendix
+
+* standing on the shoulders of giants
+* deeply inspired by
+** https://github.com/cljstron/cljstron
